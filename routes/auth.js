@@ -57,10 +57,9 @@ router.post("/signup", (req, res, next) => {
 				res.redirect("/");
 			})
 			.catch(err => {
-				console.log(err)
-				/* res.render("auth/signup", {
+				res.render("auth/signup", {
 					message: "Something went wrong"
-				}); */
+				});
 			})
 	});
 });
@@ -68,6 +67,37 @@ router.post("/signup", (req, res, next) => {
 router.get("/logout", (req, res) => {
 	req.logout();
 	res.redirect("/");
+});
+
+
+router.get("/profile", (req, res) => {
+	res.render("auth/profile");
+});
+
+router.post("/profile", (req, res) => {
+	const email = req.body.email;
+	const address = req.body.address;
+	const isCooker = req.body.isCooker;
+	console.log(isCooker)
+	const id = req.user._id;
+
+	if (email === "" || address === "") {
+		res.render("auth/profile", {
+			message: "Indicate email and address"
+		});
+		return;
+	}
+
+	User.findByIdAndUpdate(id, { email, address, isCooker })
+			.then(() => {
+				res.redirect("auth/profile");
+			})
+			.catch(err => {
+				res.render("auth/profile", {
+					message: "Something went wrong"
+				});
+			})
+	
 });
 
 module.exports = router;

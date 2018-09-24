@@ -10,7 +10,12 @@
 
   <label for="address">Address</label>
   <input id="address" type="text" name="address" placeholder="Your address" required>
-  <input type="check" name="isCooker" id="isCooker">
+  <label for="isCooker">Do you wanna be a cooker?</label>
+  {{!-- <input type="checkbox" name="isCooker" id="isCooker" value="true"> --}}
+  
+  <input type="radio" name="isCooker" value="false" checked> No<br>
+  <input type="radio" name="isCooker" value="true"> Yes<br>
+  
   {{#if message }}
   <div class="error-message">{{ message }}</div>
   {{/if}}
