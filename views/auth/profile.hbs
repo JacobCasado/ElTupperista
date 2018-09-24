@@ -1,0 +1,35 @@
+<h2>Profile</h2>
+
+<h4>Hello Usuario1</h4>
+
+
+
+<form action="/auth/profile" method="POST" id="form-profile">
+  <label for="email">Email</label>
+  <input id="email" type="email" name="email" placeholder="johndoe@email.com" required>
+
+  <label for="address">Address</label>
+  <input id="address" type="text" name="address" placeholder="Your address" required>
+  <input type="check" name="isCooker" id="isCooker">
+  {{#if message }}
+  <div class="error-message">{{ message }}</div>
+  {{/if}}
+
+  {{!-- <input class="form-control" type="hidden" name="latitude" id="lat-pos" placeholder="Latitude *">
+  <input class="form-control" type="hidden" name="longitude" id="lng-pos" placeholder="Longitude *"> --}}
+
+  <button type="submit">Create Profile</button>
+
+</form>
+
+<form action="tupper/add" method="POST" id="form-tupper">
+  <label for="tupperName">Your Recipe</label>
+  <input id="tupperName" type="text" name="tupperName" placeholder="Recipe Name">
+  <label for="price">Your Price</label>
+  <input type="number" name="price" id="price">
+  <label for="quantity">Tupper´s Quantity</label>
+  <input type="number" name="quantity" id="quantity">
+
+  <button type="submit">Create Your Tupper</button>
+
+</form>
