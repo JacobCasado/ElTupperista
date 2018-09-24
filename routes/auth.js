@@ -10,7 +10,8 @@ const bcryptSalt = 10;
 
 router.get("/login", (req, res, next) => {
 	res.render("auth/login", {
-		"message": req.flash("error")
+		"message": req.flash("error"),  
+		user: req.user
 	});
 });
 
@@ -41,21 +42,18 @@ router.post("/signup", (req, res, next) => {
 	}
 
 	User.findOne( { $or: [{username: username}, {email: email}] }, (err, user) => {
-
+		
 		if (user !== null) {
 			let message;
-
 			if (user.username && user.username === username) {
 				message = `The username '${username}' already exists`; 
 			        
 			} else if(user.email && user.email === email) {
 				message = `The email '${email}' already exists`;     
 			}
-
 			res.render("auth/signup", {
 				message: message
 			});
-
 			return;
 		}
 
@@ -70,7 +68,7 @@ router.post("/signup", (req, res, next) => {
 
 		newUser.save()
 			.then(() => {
-				res.redirect("/");
+				res.redirect("/", { user:req.user });
 			})
 			.catch(err => {
 				res.render("auth/signup", {
@@ -87,14 +85,13 @@ router.get("/logout", (req, res) => {
 
 
 router.get("/profile", (req, res) => {
-	res.render("auth/profile");
+	res.render("auth/profile", { user: req.user });
 });
 
 router.post("/profile", (req, res) => {
 	const email = req.body.email;
 	const address = req.body.address;
 	const isCooker = req.body.isCooker;
-	console.log(isCooker)
 	const id = req.user._id;
 
 	if (email === "" || address === "") {
@@ -105,15 +102,14 @@ router.post("/profile", (req, res) => {
 	}
 
 	User.findByIdAndUpdate(id, { email, address, isCooker })
-			.then(() => {
-				res.redirect("auth/profile");
-			})
-			.catch(err => {
-				res.render("auth/profile", {
-					message: "Something went wrong"
-				});
-			})
-	
+		.then(() => {
+			res.redirect("auth/profile");
+		})
+		.catch(err => {
+			res.render("auth/profile", {
+				message: "Something went wrong"
+			});
+		})
 });
 
 module.exports = router;
