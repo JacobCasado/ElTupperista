@@ -52,8 +52,6 @@ router.post("/signup", (req, res, next) => {
 			password: hashPass
 		});
 
-		console.log('newUser', newUser);
-
 		newUser.save()
 			.then(() => {
 				res.redirect("/");
