@@ -2,9 +2,9 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
-	username: String,
+	username: { type: String, index: true },
 	password: String,
-	email: String,
+	email: { type: String, index: true },
 	// location: {
 	// 	type: {	type: String },
 	// 	coordinates: [ Number ]

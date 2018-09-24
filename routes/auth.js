@@ -26,21 +26,36 @@ router.get("/signup", (req, res, next) => {
 });
 
 router.post("/signup", (req, res, next) => {
-	const username = req.body.username;
+	let username = req.body.username;
 	const password = req.body.password;
+	let email = req.body.email;
 
-	if (username === "" || password === "") {
+	if (username === "" || password === "" || email === "") {
 		res.render("auth/signup", {
-			message: "Indicate username and password"
+			message: "Username, password and email are required"
 		});
 		return;
+	} else {
+		username = username.toLowerCase().trim();
+		email = email.toLowerCase().trim();
 	}
 
-	User.findOne({ username }, "username", (err, user) => {
+	User.findOne( { $or: [{username: username}, {email: email}] }, (err, user) => {
+
 		if (user !== null) {
+			let message;
+
+			if (user.username && user.username === username) {
+				message = `The username '${username}' already exists`; 
+			        
+			} else if(user.email && user.email === email) {
+				message = `The email '${email}' already exists`;     
+			}
+
 			res.render("auth/signup", {
-				message: "The username already exists"
+				message: message
 			});
+
 			return;
 		}
 
@@ -49,7 +64,8 @@ router.post("/signup", (req, res, next) => {
 
 		const newUser = new User({
 			username,
-			password: hashPass
+			password: hashPass,
+			email
 		});
 
 		newUser.save()
@@ -61,7 +77,7 @@ router.post("/signup", (req, res, next) => {
 					message: "Something went wrong"
 				});
 			})
-	});
+		});
 });
 
 router.get("/logout", (req, res) => {
