@@ -20,13 +20,72 @@ mongoose
 
 let users = [
   {
-    username: "alice",
-    password: bcrypt.hashSync("alice", bcrypt.genSaltSync(bcryptSalt)),
+    username: 'Manoli',
+    password: bcrypt.hashSync('Manoli', bcrypt.genSaltSync(bcryptSalt)),
+    email: 'Manoli_Croquetas@hotmail.com',
+    // location: {
+    // 	type: {	type: String },
+    // 	coordinates: [ Number ]
+    // },
+    address: 'Calle Alejandro Saint Aubin 4',
+    isCooker: true,
   },
   {
-    username: "bob",
-    password: bcrypt.hashSync("bob", bcrypt.genSaltSync(bcryptSalt)),
-  }
+    username: 'Mari Pili',
+    password: bcrypt.hashSync('Mari Pili', bcrypt.genSaltSync(bcryptSalt)),
+    email: 'Mari-Pili-Leal@yahoo.com',
+    // location: {
+    // 	type: {	type: String },
+    // 	coordinates: [ Number ]
+    // },
+    address: 'Calle Aldea del Fresno 12',
+    isCooker: true,
+  },
+  {
+    username: 'Antonia',
+    password: bcrypt.hashSync('Antonia', bcrypt.genSaltSync(bcryptSalt)),
+    email: 'Antonia-Salas-Pacheco@gmail.com',
+    // location: {
+    // 	type: {	type: String },
+    // 	coordinates: [ Number ]
+    // },
+    address: 'Calle del Divino Vallés 7',
+    isCooker: true,
+  },
+  {
+    username: 'Mari Carmen',
+    password: bcrypt.hashSync('Mari Carmen', bcrypt.genSaltSync(bcryptSalt)),
+    email: 'MariCarmenTorrijos@outlook.com',
+    // location: {
+    // 	type: {	type: String },
+    // 	coordinates: [ Number ]
+    // },
+    address: 'Calle Alicante 25',
+    isCooker: true,
+  },
+  {
+    username: 'Maria de las Calpurnias',
+    password: bcrypt.hashSync('Maria de las Calpurnias', bcrypt.genSaltSync(bcryptSalt)),
+    email: 'MariaCalpurnia@hotmail.com',
+    // location: {
+    // 	type: {	type: String },
+    // 	coordinates: [ Number ]
+    // },
+    address: 'Calle de Bolivar 18',
+    isCooker: true,
+  },
+  {
+    username: 'Sacramentp',
+    password: bcrypt.hashSync('Sacramento', bcrypt.genSaltSync(bcryptSalt)),
+    email: 'Sacramento.Organero@outlook.com',
+    // location: {
+    // 	type: {	type: String },
+    // 	coordinates: [ Number ]
+    // },
+    address: 'Calle Circonita 16',
+    isCooker: true,
+  },
+  
 ]
 
 User.deleteMany()
