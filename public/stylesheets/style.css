@@ -312,4 +312,10 @@ a {
   color: #00E5FF;
   text-decoration: none; }
 
+.error-message {
+  color: #F03C00; }
+
+.success-message {
+  color: #00BF00; }
+
 /*# sourceMappingURL=style.css.map */
