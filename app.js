@@ -84,5 +84,5 @@ require('./passport')(app);
 app.use('/', require('./routes/index'));
 app.use('/auth', require('./routes/auth'));
 app.use('/profile', require('./routes/profile'));
-
+app.use('/map', require('./routes/map'));
 module.exports = app;
