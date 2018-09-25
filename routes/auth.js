@@ -1,5 +1,6 @@
 const express = require("express");
 const passport = require('passport');
+const { ensureLoggedIn, ensureLoggedOut } = require("connect-ensure-login");
 const router = express.Router();
 const User = require("../models/User");
 
@@ -8,9 +9,10 @@ const bcrypt = require("bcrypt");
 const bcryptSalt = 10;
 
 
-router.get("/login", (req, res, next) => {
+router.get("/login", ensureLoggedOut(), (req, res, next) => {
 	res.render("auth/login", {
-		"message": req.flash("error")
+		"errorMessage": req.flash("error"),  
+		user: req.user
 	});
 });
 
@@ -21,25 +23,37 @@ router.post("/login", passport.authenticate("local", {
 	passReqToCallback: true
 }));
 
-router.get("/signup", (req, res, next) => {
+router.get("/signup", ensureLoggedOut(), (req, res, next) => {
 	res.render("auth/signup");
 });
 
-router.post("/signup", (req, res, next) => {
-	const username = req.body.username;
+router.post("/signup", ensureLoggedOut(), (req, res, next) => {
+	let username = req.body.username;
 	const password = req.body.password;
+	let email = req.body.email;
 
-	if (username === "" || password === "") {
+	if (username === "" || password === "" || email === "") {
 		res.render("auth/signup", {
-			message: "Indicate username and password"
+			errorMessage: "Username, password and email are required"
 		});
 		return;
+	} else {
+		username = username.toLowerCase().trim();
+		email = email.toLowerCase().trim();
 	}
 
-	User.findOne({ username }, "username", (err, user) => {
+	User.findOne( { $or: [{username: username}, {email: email}] }, (err, user) => {
+		
 		if (user !== null) {
+			
+			if (user.username && user.username === username) {
+				errorMessage = `The username '${username}' already exists`; 
+			        
+			} else if(user.email && user.email === email) {
+				errorMessage = `The email '${email}' already exists`;     
+			}
 			res.render("auth/signup", {
-				message: "The username already exists"
+				errorMessage: errorMessage
 			});
 			return;
 		}
@@ -49,19 +63,20 @@ router.post("/signup", (req, res, next) => {
 
 		const newUser = new User({
 			username,
-			password: hashPass
+			password: hashPass,
+			email
 		});
 
 		newUser.save()
 			.then(() => {
-				res.redirect("/");
+				res.render("auth/login", { user:req.user });
 			})
 			.catch(err => {
 				res.render("auth/signup", {
-					message: "Something went wrong"
+					errorMessage: "Something went wrong"
 				});
 			})
-	});
+		});
 });
 
 router.get("/logout", (req, res) => {
@@ -69,35 +84,5 @@ router.get("/logout", (req, res) => {
 	res.redirect("/");
 });
 
-
-router.get("/profile", (req, res) => {
-	res.render("auth/profile");
-});
-
-router.post("/profile", (req, res) => {
-	const email = req.body.email;
-	const address = req.body.address;
-	const isCooker = req.body.isCooker;
-	console.log(isCooker)
-	const id = req.user._id;
-
-	if (email === "" || address === "") {
-		res.render("auth/profile", {
-			message: "Indicate email and address"
-		});
-		return;
-	}
-
-	User.findByIdAndUpdate(id, { email, address, isCooker })
-			.then(() => {
-				res.redirect("auth/profile");
-			})
-			.catch(err => {
-				res.render("auth/profile", {
-					message: "Something went wrong"
-				});
-			})
-	
-});
 
 module.exports = router;

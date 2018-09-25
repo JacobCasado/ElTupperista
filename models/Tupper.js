@@ -5,6 +5,10 @@ const tupperSchema = new Schema({
 	tuppername: String,
 	price: Number,
 	quantity: Number,
+	user: {
+		type: Schema.Types.ObjectId,
+		ref: 'User'
+	}
 	// tupperPic: String,
 	// ingredients: [String],
 	// allergens: {

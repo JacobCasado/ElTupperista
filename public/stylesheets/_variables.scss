@@ -1,10 +1,20 @@
-/* ============================= */
-// FONTS
-/* ============================= */ 
-$font-main: "Lucida Grande", Helvetica, Arial, sans-serif;
+/* Fonts
+========================================================================== */
+@import url("https://fonts.googleapis.com/css?family=Ubuntu:400,700");
+$main-font-family: "Lucida Grande", Helvetica, Arial, sans-serif;
+$brand-font-family: 'Ubuntu', sans-serif;
+
 $font-base: 16px;
 
-/* ============================= */
-// COLORS
-/* ============================= */ 
-$light-blue: #00B7FF;
+/* Colors
+========================================================================== */
+$light-blue: #00E5FF;
+$medium-blue: #00B7FF;
+$medium-orange: #F03C00;
+$medium-yellow: #fad03b;
+$ligth-black: #5F6075;
+$medium-black: #1A1A1C;
+$dark-black: #000000;
+
+$success-color: #00BF00;
+$error-color: #F03C00;

@@ -1,0 +1,37 @@
+<h2>Profile</h2>
+
+<h4>Hello <span>{{user.username}}</span></h4>
+
+<form action="/profile" method="POST" id="form-profile">
+	<label for="address">Address</label>
+	<input id="address" type="text" name="address" placeholder="Your address" required>
+	<label for="isCooker">Do you wanna be a cooker?</label>
+	{{!-- <input type="checkbox" name="isCooker" id="isCooker" value="true"> --}}
+
+	<input type="radio" name="isCooker" value="false" checked> No<br>
+	<input type="radio" name="isCooker" value="true"> Yes<br>
+
+	{{#if errorMessage }}
+		<div class="error-message">{{ errorMessage }}</div>
+	{{else if successMessage}}
+		<div class="success-message">{{ successMessage }}</div>
+	{{/if}}
+
+	{{!-- <input class="form-control" type="hidden" name="latitude" id="lat-pos" placeholder="Latitude *">
+	<input class="form-control" type="hidden" name="longitude" id="lng-pos" placeholder="Longitude *"> --}}
+
+	<button type="submit">Create Profile</button>
+
+</form>
+
+<form action="tupper/add" method="POST" id="form-tupper">
+	<label for="tupperName">Your Recipe</label>
+	<input id="tupperName" type="text" name="tupperName" placeholder="Recipe Name">
+	<label for="price">Your Price</label>
+	<input type="number" name="price" id="price">
+	<label for="quantity">Tupper´s Quantity</label>
+	<input type="number" name="quantity" id="quantity">
+
+	<button type="submit">Create Your Tupper</button>
+
+</form>

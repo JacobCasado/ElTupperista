@@ -83,6 +83,6 @@ require('./passport')(app);
 // ROUTERS
 app.use('/', require('./routes/index'));
 app.use('/auth', require('./routes/auth'));
-
+app.use('/profile', require('./routes/profile'));
 
 module.exports = app;
