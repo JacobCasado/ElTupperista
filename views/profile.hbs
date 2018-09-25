@@ -3,8 +3,8 @@
 <h4>Hello <span>{{user.username}}</span></h4>
 
 <form action="/profile" method="POST" id="form-profile">
-	<label for="address" id="autocomplete">Address</label>
-	<input id="address" type="text" name="address" placeholder="Your address" required>
+	<label for="address">Address</label>
+	<input type="text" name="address" id="autocomplete" placeholder="Your address" required>
 	<label for="isCooker">Do you wanna be a cooker?</label>
 	{{!-- <input type="checkbox" name="isCooker" id="isCooker" value="true"> --}}
 
@@ -12,9 +12,9 @@
 	<input type="radio" name="isCooker" value="true"> Yes<br>
 
 	{{#if errorMessage }}
-		<div class="error-message">{{ errorMessage }}</div>
+	<div class="error-message">{{ errorMessage }}</div>
 	{{else if successMessage}}
-		<div class="success-message">{{ successMessage }}</div>
+	<div class="success-message">{{ successMessage }}</div>
 	{{/if}}
 
 	{{!-- <input class="form-control" type="hidden" name="latitude" id="lat-pos" placeholder="Latitude *">
@@ -36,5 +36,4 @@
 
 </form>
 
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDY9T-vgexC5tN9rKG9Uj05FAJMv9Rs7bs&libraries=places&language=es"></script>
 <script src="/javascripts/autocomplete.js"></script>
