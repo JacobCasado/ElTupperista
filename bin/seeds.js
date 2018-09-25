@@ -24,7 +24,7 @@ let users = [
     password: bcrypt.hashSync('Manoli', bcrypt.genSaltSync(bcryptSalt)),
     email: 'Manoli_Croquetas@hotmail.com',
     location: {
-    	type: {	type: 'Point' },
+    	type: 'Point' ,
     	coordinates: [ 40.3932613, -3.6991178 ]
     },
     address: 'Calle Alejandro Saint Aubin 4',
@@ -35,7 +35,7 @@ let users = [
     password: bcrypt.hashSync('Mari Pili', bcrypt.genSaltSync(bcryptSalt)),
     email: 'Mari-Pili-Leal@yahoo.com',
     location: {
-    	type: {	type: 'Point' },
+    	type: 'Point' ,
     	coordinates: [ 40.3959449, -3.6997879 ]
     },
     address: 'Calle Aldea del Fresno 12',
@@ -46,7 +46,7 @@ let users = [
     password: bcrypt.hashSync('Antonia', bcrypt.genSaltSync(bcryptSalt)),
     email: 'Antonia-Salas-Pacheco@gmail.com',
     location: {
-    	type: {	type: 'Point' },
+    	type: 'Point' ,
     	coordinates: [ 40.396194, -3.6975877 ]
     },
     address: 'Calle del Divino Vallés 7',
@@ -57,7 +57,7 @@ let users = [
     password: bcrypt.hashSync('Mari Carmen', bcrypt.genSaltSync(bcryptSalt)),
     email: 'MariCarmenTorrijos@outlook.com',
     location: {
-    	type: {	type: 'Point' },
+    	type:  'Point' ,
     	coordinates: [ 40.394504, -3.6938693 ]
     },
     address: 'Calle Alicante 25',
@@ -68,7 +68,7 @@ let users = [
     password: bcrypt.hashSync('Maria de las Calpurnias', bcrypt.genSaltSync(bcryptSalt)),
     email: 'MariaCalpurnia@hotmail.com',
     location: {
-    	type: {	type: 'Point' },
+    	type:  'Point' ,
     	coordinates: [ 40.39209, -3.6941687 ]
     },
     address: 'Calle de Bolivar 18',
@@ -79,7 +79,7 @@ let users = [
     password: bcrypt.hashSync('Sacramento', bcrypt.genSaltSync(bcryptSalt)),
     email: 'Sacramento.Organero@outlook.com',
     location: {
-    	type: {	type: 'Point' },
+    	type:  'Point' ,
     	coordinates: [ 40.393133, -3.6933271 ]
     },
     address: 'Calle Circonita 16',

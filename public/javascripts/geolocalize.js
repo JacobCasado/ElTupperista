@@ -11,25 +11,25 @@ const geolocalize = () => {
   });
 };
 
-geolocalize().then(coords => {
-  drawMarkerAndCenter(map, coords);
-  const directionsService = new google.maps.DirectionsService();
-  const directionsDisplay = new google.maps.DirectionsRenderer();
-  const directionRequest = {
-    origin: ironhackMAD,
-    destination: coords,
-    travelMode: "WALKING"
-  };
+// geolocalize().then(coords => {
+//   drawMarkerAndCenter(map, coords);
+//   const directionsService = new google.maps.DirectionsService();
+//   const directionsDisplay = new google.maps.DirectionsRenderer();
+//   const directionRequest = {
+//     origin: ironhackMAD,
+//     destination: coords,
+//     travelMode: "WALKING"
+//   };
 
-  directionsService.route(directionRequest, function(response, status) {
-    if (status === "OK") {
-      // everything is ok
-      directionsDisplay.setDirections(response);
-    } else {
-      // something went wrong
-      window.alert("Directions request failed due to " + status);
-    }
-  });
+//   directionsService.route(directionRequest, function(response, status) {
+//     if (status === "OK") {
+//       // everything is ok
+//       directionsDisplay.setDirections(response);
+//     } else {
+//       // something went wrong
+//       window.alert("Directions request failed due to " + status);
+//     }
+//   });
 
-  directionsDisplay.setMap(map);
-});
+//   directionsDisplay.setMap(map);
+// });
