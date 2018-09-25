@@ -85,33 +85,4 @@ router.get("/logout", (req, res) => {
 });
 
 
-router.get("/profile", ensureLoggedIn(), (req, res) => {
-	res.render("auth/profile", { user: req.user });
-});
-
-router.post("/profile", ensureLoggedIn(), (req, res) => {
-	const address = req.body.address;
-	const isCooker = req.body.isCooker;
-	const id = req.user._id;
-
-	if (address === "") {
-		res.render("auth/profile", {
-			errorMessage: "Indicate an address"
-		});
-		return;
-	}
-
-	User.findByIdAndUpdate(id, { address, isCooker })
-		.then(() => {
-			res.render("auth/profile", {
-				successMessage: 'The user was updated successfully'
-			});
-		})
-		.catch(err => {
-			res.render("auth/profile", {
-				errorMessage: "Something went wrong"
-			});
-		})
-});
-
 module.exports = router;
