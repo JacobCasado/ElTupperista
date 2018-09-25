@@ -11,8 +11,10 @@
 	<input type="radio" name="isCooker" value="false" checked> No<br>
 	<input type="radio" name="isCooker" value="true"> Yes<br>
 
-	{{#if message }}
-	<div class="error-message">{{ message }}</div>
+	{{#if errorMessage }}
+		<div class="error-message">{{ errorMessage }}</div>
+	{{else if successMessage}}
+		<div class="success-message">{{ successMessage }}</div>
 	{{/if}}
 
 	{{!-- <input class="form-control" type="hidden" name="latitude" id="lat-pos" placeholder="Latitude *">

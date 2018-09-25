@@ -10,7 +10,7 @@ const bcryptSalt = 10;
 
 router.get("/login", (req, res, next) => {
 	res.render("auth/login", {
-		"message": req.flash("error"),  
+		"errorMessage": req.flash("error"),  
 		user: req.user
 	});
 });
@@ -33,7 +33,7 @@ router.post("/signup", (req, res, next) => {
 
 	if (username === "" || password === "" || email === "") {
 		res.render("auth/signup", {
-			message: "Username, password and email are required"
+			errorMessage: "Username, password and email are required"
 		});
 		return;
 	} else {
@@ -44,15 +44,15 @@ router.post("/signup", (req, res, next) => {
 	User.findOne( { $or: [{username: username}, {email: email}] }, (err, user) => {
 		
 		if (user !== null) {
-			let message;
+			
 			if (user.username && user.username === username) {
-				message = `The username '${username}' already exists`; 
+				errorMessage = `The username '${username}' already exists`; 
 			        
 			} else if(user.email && user.email === email) {
-				message = `The email '${email}' already exists`;     
+				errorMessage = `The email '${email}' already exists`;     
 			}
 			res.render("auth/signup", {
-				message: message
+				errorMessage: errorMessage
 			});
 			return;
 		}
@@ -68,11 +68,11 @@ router.post("/signup", (req, res, next) => {
 
 		newUser.save()
 			.then(() => {
-				res.redirect("/", { user:req.user });
+				res.render("auth/login", { user:req.user });
 			})
 			.catch(err => {
 				res.render("auth/signup", {
-					message: "Something went wrong"
+					errorMessage: "Something went wrong"
 				});
 			})
 		});
@@ -96,18 +96,20 @@ router.post("/profile", (req, res) => {
 
 	if (email === "" || address === "") {
 		res.render("auth/profile", {
-			message: "Indicate email and address"
+			errorMessage: "Indicate email and address"
 		});
 		return;
 	}
 
 	User.findByIdAndUpdate(id, { email, address, isCooker })
 		.then(() => {
-			res.redirect("auth/profile");
+			res.render("auth/profile", {
+				successMessage: 'The user was updated successfully'
+			});
 		})
 		.catch(err => {
 			res.render("auth/profile", {
-				message: "Something went wrong"
+				errorMessage: "Something went wrong"
 			});
 		})
 });
