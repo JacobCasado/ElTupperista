@@ -1,23 +1,9 @@
-const geolocalize = () => {
-  return new Promise((resolve, reject) => {
-    if (!navigator.geolocation) reject("No geolocation available");
-    navigator.geolocation.getCurrentPosition(pos => {
-      const center = {
-        lat: pos.coords.latitude,
-        lng: pos.coords.longitude
-      };
-      resolve(center);
-    }, reject);
-  });
-};
 
-// geolocalize().then(coords => {
-//   drawMarkerAndCenter(map, coords);
-//   const directionsService = new google.maps.DirectionsService();
-//   const directionsDisplay = new google.maps.DirectionsRenderer();
+// geolocalize().then(coordinates => {
+  
 //   const directionRequest = {
-//     origin: ironhackMAD,
-//     destination: coords,
+//     origin: { lat: 40.3925321, lng: -3.7004556 },
+//     destination: [],
 //     travelMode: "WALKING"
 //   };
 
