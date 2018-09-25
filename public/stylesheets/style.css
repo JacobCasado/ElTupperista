@@ -312,6 +312,13 @@ a {
   color: #00E5FF;
   text-decoration: none; }
 
+#map {
+  margin-top: 5px;
+  width: 335px;
+  height: 500px;
+  border-radius: 20px;
+  border: 1px solid #f19c39; }
+
 .error-message {
   color: #F03C00; }
 
