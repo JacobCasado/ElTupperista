@@ -75,7 +75,7 @@ let users = [
     isCooker: true,
   },
   {
-    username: 'Sacramentp',
+    username: 'Sacramento',
     password: bcrypt.hashSync('Sacramento', bcrypt.genSaltSync(bcryptSalt)),
     email: 'Sacramento.Organero@outlook.com',
     // location: {
