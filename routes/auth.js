@@ -1,5 +1,6 @@
 const express = require("express");
 const passport = require('passport');
+const { ensureLoggedIn, ensureLoggedOut } = require("connect-ensure-login");
 const router = express.Router();
 const User = require("../models/User");
 
@@ -8,7 +9,7 @@ const bcrypt = require("bcrypt");
 const bcryptSalt = 10;
 
 
-router.get("/login", (req, res, next) => {
+router.get("/login", ensureLoggedOut(), (req, res, next) => {
 	res.render("auth/login", {
 		"errorMessage": req.flash("error"),  
 		user: req.user
@@ -22,11 +23,11 @@ router.post("/login", passport.authenticate("local", {
 	passReqToCallback: true
 }));
 
-router.get("/signup", (req, res, next) => {
+router.get("/signup", ensureLoggedOut(), (req, res, next) => {
 	res.render("auth/signup");
 });
 
-router.post("/signup", (req, res, next) => {
+router.post("/signup", ensureLoggedOut(), (req, res, next) => {
 	let username = req.body.username;
 	const password = req.body.password;
 	let email = req.body.email;
@@ -84,24 +85,23 @@ router.get("/logout", (req, res) => {
 });
 
 
-router.get("/profile", (req, res) => {
+router.get("/profile", ensureLoggedIn(), (req, res) => {
 	res.render("auth/profile", { user: req.user });
 });
 
-router.post("/profile", (req, res) => {
-	const email = req.body.email;
+router.post("/profile", ensureLoggedIn(), (req, res) => {
 	const address = req.body.address;
 	const isCooker = req.body.isCooker;
 	const id = req.user._id;
 
-	if (email === "" || address === "") {
+	if (address === "") {
 		res.render("auth/profile", {
-			errorMessage: "Indicate email and address"
+			errorMessage: "Indicate an address"
 		});
 		return;
 	}
 
-	User.findByIdAndUpdate(id, { email, address, isCooker })
+	User.findByIdAndUpdate(id, { address, isCooker })
 		.then(() => {
 			res.render("auth/profile", {
 				successMessage: 'The user was updated successfully'
