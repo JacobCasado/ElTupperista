@@ -5,7 +5,8 @@ const Tupper = require('../models/Tupper');
 
 // C(R)UD -> Muestra todos los tuppers
 router.get('/', (req, res, next) => {
-	Tupper.find().populate('user')
+	Tupper.find()
+	.populate('user')
 		.then(tuppers => {
 
 			res.render('tupper/list', {

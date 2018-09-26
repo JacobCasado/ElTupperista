@@ -29,27 +29,23 @@ document.addEventListener('DOMContentLoaded', () => {
 		profileMap = new google.maps.Map(document.getElementById('profileMap'), mapOptions);
 	}
 
-	//Coordenadas que vienen de la geolocalización
-	function fillInputPosition(latitude, longitude) {
-		let inputLat = $('#lat-pos').val(latitude);
-		let inputLong = $('#lng-pos').val(longitude);
-	}
-
 	function codeAddress() {
 		var address = document.getElementById('autocomplete').value;
 
 		geocoder.geocode( { 'address': address}, function(results, status) {
 
 			if (status == 'OK') {
-			
+		
 			profileMap.setCenter(results[0].geometry.location);
 			var marker = new google.maps.Marker({
 				map: profileMap,
 				position: results[0].geometry.location
 			});
+
 		} else {
 			alert('Geocode was not successful for the following reason: ' + status);
 		}
 		});
 	}
 }, false);
+

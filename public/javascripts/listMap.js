@@ -57,7 +57,7 @@ document.addEventListener(
 		
 
 			tuppers.forEach(tupper => {
-				console.log(tupper);
+
 				new google.maps.Marker({
 				position: {
 					lat: Number(tupper.user.location.coordinates[0]),

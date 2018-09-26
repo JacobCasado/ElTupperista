@@ -1,6 +1,7 @@
 <div id="map"></div>
 
 <div id="floating-panel">
+
     <b>Start: </b>
     <select id="start">
       
@@ -8,10 +9,11 @@
       
     </select>
     <b>End: </b>
+
     <select id="end">
-       {{#each tuppers}}
-      <option value={{this.user.location.coordinates}}>{{this.user.username}}</option>
-      {{/each}}
+		{{#each tuppers}}
+		<option value={{this.user.location.coordinates}}>{{this.user.username}}</option>
+		{{/each}}	
     </select>
 <script>
   window.tuppers = {{{ tupperStr }}}
