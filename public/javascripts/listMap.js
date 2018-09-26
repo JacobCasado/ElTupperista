@@ -41,7 +41,6 @@ document.addEventListener(
         },
         function(response, status) {
           if (status === "OK") {
-            console.log(response.location);
             directionsDisplay.setDirections(response);
           } else {
             window.alert("Directions request failed due to " + status);
@@ -58,8 +57,8 @@ document.addEventListener(
       users.forEach(user => {
         new google.maps.Marker({
           position: {
-            lat: user.location.coordinates[0],
-            lng: user.location.coordinates[1]
+            lat: Number(user.location.coordinates[0]),
+            lng: Number(user.location.coordinates[1])
           },
           map: map,
           title: user.username

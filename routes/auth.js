@@ -64,7 +64,11 @@ router.post("/signup", ensureLoggedOut(), (req, res, next) => {
 		const newUser = new User({
 			username,
 			password: hashPass,
-			email
+			email,
+			location :{
+				type: "Point",
+				coordinates:[40.3925321, -3.7004556]
+			}
 		});
 
 		newUser.save()
@@ -72,9 +76,10 @@ router.post("/signup", ensureLoggedOut(), (req, res, next) => {
 				res.render("auth/login", { user:req.user });
 			})
 			.catch(err => {
-				res.render("auth/signup", {
-					errorMessage: "Something went wrong"
-				});
+				//res.render("auth/signup", {
+					//errorMessage: "Something went wrong"
+				//});
+				console.log(err);
 			})
 		});
 });

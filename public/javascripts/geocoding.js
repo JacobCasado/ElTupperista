@@ -14,8 +14,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 		geolocalize()
 			.then(position => {
-				defaultLat = position.lat;
-				defaultLng = position.lng;
+				defaultLat = Number(position.lat);
+				defaultLng = Number(position.lng);
 			})
 			.catch(err => console.log(err));
 

@@ -12,15 +12,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	let marker;
 
-	map.addListener('click', function (e) {
-		const clickPos = {
-			lat: e.latLng.lat(),
-			lng: e.latLng.lng()
-		}
-		console.log(clickPos);
-		marker.setPosition(clickPos);
-		setPosOnForm(clickPos)
-	});
+	// map.addListener('click', function (e) {
+	// 	const clickPos = {
+	// 		lat: e.latLng.lat(),
+	// 		lng: e.latLng.lng()
+	// 	}
+	// 	console.log(clickPos);
+	// 	marker.setPosition(clickPos);
+	// 	setPosOnForm(clickPos)
+	// });
 
 	geolocalize().then(center => {
 		map.setCenter(center);
