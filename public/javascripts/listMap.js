@@ -50,7 +50,8 @@ document.addEventListener(
       );
     }
 
-    directionsDisplay.setMap(map);
+	directionsDisplay.setMap(map);
+	
     geolocalize().then(center => {
       map.setCenter(center);
 

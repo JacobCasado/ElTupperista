@@ -2,15 +2,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	var geocoder;
 	var profileMap;
-	//Ironhack Coordenates
-	var defaultLat = 40.3932613;
-	var defaultLng = -3.6991178;
 
 	initialize();
 	
 	$('#updateProfile').on('click', codeAddress);
 
 	function initialize() {
+		//Ironhack Coordenates
+		let defaultLat = 40.3932613;
+		let defaultLng = -3.6991178;
+
+		geolocalize()
+			.then(position => {
+				defaultLat = position.lat;
+				defaultLng = position.lng;
+			})
+			.catch(err => console.log(err));
+
 		geocoder = new google.maps.Geocoder();
 		var latlng = new google.maps.LatLng(defaultLat, defaultLng);
 		var mapOptions = {
