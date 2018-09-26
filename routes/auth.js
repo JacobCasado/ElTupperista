@@ -76,10 +76,9 @@ router.post("/signup", ensureLoggedOut(), (req, res, next) => {
 				res.render("auth/login", { user:req.user });
 			})
 			.catch(err => {
-				//res.render("auth/signup", {
-					//errorMessage: "Something went wrong"
-				//});
-				console.log(err);
+				res.render("auth/signup", {
+					errorMessage: "Something went wrong"
+				});
 			})
 		});
 });
