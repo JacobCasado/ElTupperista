@@ -1,0 +1,20 @@
+<div id="map"></div>
+
+<div id="floating-panel">
+    <b>Start: </b>
+    <select id="start">
+      
+      <option value="40.3932613, -3.6991178">IronHack</option>
+      
+    </select>
+    <b>End: </b>
+    <select id="end">
+       {{#each tuppers}}
+      <option value={{this.user.location.coordinates}}>{{this.user.username}}</option>
+      {{/each}}
+    </select>
+<script>
+  window.tuppers = {{{ tupperStr }}}
+</script>
+
+<script src="/javascripts/listMap.js"></script>

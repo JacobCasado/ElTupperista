@@ -4,17 +4,16 @@ const Tupper = require('../models/Tupper');
 
 
 // C(R)UD -> Muestra todos los tuppers
-// router.get('/', (req, res, next) => {
-// 	Tupper.find()
-// 		.then(tupper => {
-// 			console.log('TUPPER', tupper);
+router.get('/', (req, res, next) => {
+	Tupper.find().populate('user')
+		.then(tuppers => {
 
-// 			res.render('tupper/list', {
-// 				tupper,
-// 				title: 'Lista de tuppers'
-// 			});
-// 		}).catch(e => next(e))
-// });
+			res.render('tupper/list', {
+				tuppers,
+				tupperStr: JSON.stringify(tuppers)
+			});
+		}).catch(e => next(e))
+});
 
 
 
@@ -25,20 +24,19 @@ const Tupper = require('../models/Tupper');
 
 // (C)RUD ->  Crea un tupper
 router.post('/new', (req, res, next) => {
-
 	let { tuppername, price, quantity }  = req.body;
 	let user = req.user._id;
 
-	console.log('USER', user);
-
-	const newTupper = new Tupper({tuppername, price, quantity, user});
+	const newTupper = new Tupper({ tuppername, price, quantity, user });
 
 	newTupper.save()
 		.then(() => {
-			res.redirect('/profile');
+			res.render("profile", {
+				successMessage: "Tupper saved successfully"
+			});
 		})
 		.catch(err => {
-			res.render("/profile", {
+			res.render("profile", {
 				errorMessage: "Something went wrong"
 			});
 		})

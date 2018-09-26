@@ -51,20 +51,25 @@ document.addEventListener(
 
 	directionsDisplay.setMap(map);
 	
-    geolocalize().then(center => {
-      map.setCenter(center);
+	geolocalize()
+		.then(center => {
+			map.setCenter(center);
+		
 
-      users.forEach(user => {
-        new google.maps.Marker({
-          position: {
-            lat: Number(user.location.coordinates[0]),
-            lng: Number(user.location.coordinates[1])
-          },
-          map: map,
-          title: user.username
-        });
-      });
-    });
+			tuppers.forEach(tupper => {
+				console.log(tupper);
+				new google.maps.Marker({
+				position: {
+					lat: Number(tupper.user.location.coordinates[0]),
+					lng: Number(tupper.user.location.coordinates[1])
+				},
+				map: map,
+				title: tupper.user.username
+				});
+			});
+		})
+		.catch(err => 
+			console.log(err));
   },
   false
 );
