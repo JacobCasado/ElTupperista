@@ -5,9 +5,10 @@ const Tupper = require('../models/Tupper');
 
 // C(R)UD -> Muestra todos los tuppers
 router.get('/', (req, res, next) => {
-	Tupper.find().populate('user')
+	Tupper.find()
+	.populate('user')
 		.then(tuppers => {
-
+			console.log(tuppers)
 			res.render('tupper/list', {
 				tuppers,
 				tupperStr: JSON.stringify(tuppers)
@@ -15,12 +16,6 @@ router.get('/', (req, res, next) => {
 		}).catch(e => next(e))
 });
 
-
-
-// (C)RUD ->  Muestra el formulario de creación de un tupper
-// router.get('/new', (req, res, next) => {
-// 	res.render('tupper/create');
-// });
 
 // (C)RUD ->  Crea un tupper
 router.post('/new', (req, res, next) => {
@@ -43,11 +38,11 @@ router.post('/new', (req, res, next) => {
 });
 
 // CRU(D) -> Elimina un tupper
-// router.get('/delete/:tupperId', (req, res, next) => {
-// 	Tupper.findByIdAndRemove(req.params.tupperId).then(() => {
-// 		res.redirect('/tupper');
-// 	}).catch(e => next(e))
-// });
+router.get('/delete/:tupperId', (req, res, next) => {
+	Tupper.findByIdAndRemove(req.params.tupperId).then(() => {
+		res.redirect('/tupper');
+	}).catch(e => next(e))
+});
 
 // CR(U)D -> Update, muestra el formulario
 // router.get('/update/:tupperId', (req, res, next) => {
