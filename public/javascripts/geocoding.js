@@ -9,18 +9,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	function initialize() {
 		//Ironhack Coordenates
-		let defaultLat = 40.3932613;
-		let defaultLng = -3.6991178;
+		let latitude = 40.3932613;
+		let longitude = -3.6991178;
 
 		geolocalize()
 			.then(position => {
-				defaultLat = Number(position.lat);
-				defaultLng = Number(position.lng);
+				latitude = Number(position.lat);
+				longitude = Number(position.lng);
+				fillInputPosition(latitude, longitude);
 			})
 			.catch(err => console.log(err));
 
 		geocoder = new google.maps.Geocoder();
-		var latlng = new google.maps.LatLng(defaultLat, defaultLng);
+		var latlng = new google.maps.LatLng(latitude, longitude);
 		var mapOptions = {
 		zoom: 10,
 		center: latlng
@@ -28,10 +29,19 @@ document.addEventListener('DOMContentLoaded', () => {
 		profileMap = new google.maps.Map(document.getElementById('profileMap'), mapOptions);
 	}
 
+	//Coordenadas que vienen de la geolocalización
+	function fillInputPosition(latitude, longitude) {
+		let inputLat = $('#lat-pos').val(latitude);
+		let inputLong = $('#lng-pos').val(longitude);
+	}
+
 	function codeAddress() {
 		var address = document.getElementById('autocomplete').value;
+
 		geocoder.geocode( { 'address': address}, function(results, status) {
-		if (status == 'OK') {
+
+			if (status == 'OK') {
+			
 			profileMap.setCenter(results[0].geometry.location);
 			var marker = new google.maps.Marker({
 				map: profileMap,

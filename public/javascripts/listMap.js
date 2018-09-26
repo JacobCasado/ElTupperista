@@ -30,7 +30,7 @@ document.addEventListener(
       .addEventListener("change", () => onChangeHandler());
 
     function calculateAndDisplayRoute(directionsService, directionsDisplay) {
-      console.log(document.getElementById("start").value.split(","));
+
       directionsService.route(
         {
           origin: { lat: Number(document.getElementById("start").value.split(",")[0]), lng: Number(document.getElementById("start").value.split(",")[1])},
