@@ -1,7 +1,6 @@
 document.addEventListener(
   "DOMContentLoaded",
   () => {
-   
     const drawMarkerAndCenter = (map, coords) => {
       const myMarker = new google.maps.Marker({
         position: coords,
@@ -16,9 +15,46 @@ document.addEventListener(
       center: ironhackMAD
     });
 
+    const directionsService = new google.maps.DirectionsService();
+    const directionsDisplay = new google.maps.DirectionsRenderer();
+
+    var onChangeHandler = function() {
+      calculateAndDisplayRoute(directionsService, directionsDisplay);
+    };
+
+    document
+      .getElementById("start")
+      .addEventListener("change", () => onChangeHandler());
+    document
+      .getElementById("end")
+      .addEventListener("change", () => onChangeHandler());
+
+    function calculateAndDisplayRoute(directionsService, directionsDisplay) {
+      console.log(document.getElementById("start").value.split(","));
+      directionsService.route(
+        {
+          origin: { lat: Number(document.getElementById("start").value.split(",")[0]), lng: Number(document.getElementById("start").value.split(",")[1])},
+          destination: { lat: Number(document
+            .getElementById("end").value.split(",")[0]), lng: Number(document
+            .getElementById("end").value.split(",")[1] )},
+          travelMode: "WALKING"
+        },
+        function(response, status) {
+          if (status === "OK") {
+            console.log(response.location);
+            directionsDisplay.setDirections(response);
+          } else {
+            window.alert("Directions request failed due to " + status);
+          }
+        }
+      );
+    }
+
+	directionsDisplay.setMap(map);
+	
     geolocalize().then(center => {
       map.setCenter(center);
-      
+
       users.forEach(user => {
         new google.maps.Marker({
           position: {

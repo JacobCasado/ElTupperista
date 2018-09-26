@@ -1,5 +1,18 @@
 <div id="map"></div>
 
+<div id="floating-panel">
+    <b>Start: </b>
+    <select id="start">
+      
+      <option value="40.3932613, -3.6991178">IronHack</option>
+      
+    </select>
+    <b>End: </b>
+    <select id="end">
+       {{#each users}}
+      <option value={{this.location.coordinates}}>{{this.username}}</option>
+      {{/each}}
+    </select>
 <script>
   window.users = {{{ userStr }}}
 </script>

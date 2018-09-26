@@ -25,9 +25,9 @@ let users = [
     email: 'Manoli_Croquetas@hotmail.com',
     location: {
     	type: 'Point' ,
-    	coordinates: [ 40.3932613, -3.6991178 ]
+    	coordinates: [ 40.399257,-3.7033957 ]
     },
-    address: 'Calle Alejandro Saint Aubin 4',
+    address: 'Calle de las Peñuelas 54',
     isCooker: true,
   },
   {
