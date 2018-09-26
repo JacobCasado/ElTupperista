@@ -1,22 +1,24 @@
 <h2>Signup</h2>
 
 <form action="/auth/signup" method="POST" id="form-container">
+<div class="form-group">
 	<label for="username">Username</label>
-	<input id="username" type="text" name="username" placeholder="JonSnow" required>
-
+	<input id="username" type="text" class="form-control" name="username" placeholder="JonSnow" required>
+</div>
+<div class="form-group">
 	<label for="email">Email</label>
-	<input id="email" type="email" name="email" placeholder="johndoe@email.com" required>
-
+	<input id="email" type="email" class="form-control" name="email" placeholder="johndoe@email.com" required>
+</div>
+<div class="form-group">
 	<label for="password">Password</label>
-	<input id="password" type="password" name="password" placeholder="Your password" required>
-	<br>
+	<input id="password" type="password" class="form-control" name="password" placeholder="Your password" required>
+</div>
 	{{#if errorMessage }}
 	<div class="error-message">{{ errorMessage }}</div>
 	{{/if}}
 
-	<br><br>
 
-	<button>Create account</button>
+	<button type="button" class="btn btn-primary btn-lg btn-block">Create account</button>
 
 	<p class="account-message">
 		Do you already have an account?
