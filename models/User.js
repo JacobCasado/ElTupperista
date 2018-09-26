@@ -19,10 +19,10 @@ const userSchema = new Schema({
 		unique: true,
 		required: true
 	},
-	location: {
-		type: {	type: String },
-		coordinates: [ Number ]
-	},
+	// location: {
+	// 	type: {	type: String },
+	// 	coordinates: [ Number ]
+	// },
 	address: String,
 	isCooker: {
 		type: Boolean,
