@@ -2,6 +2,8 @@
 
 // To execute this seed, run from the root of the project
 // $ node bin/seeds.js
+// 
+require('dotenv').load();
 
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
