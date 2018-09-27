@@ -11,8 +11,8 @@
     <b>End: </b>
 
     <select id="end">
-		{{#each tuppers}}
-		<option value={{this.user.location.coordinates}}>{{this.user.username}}</option>
+		{{#each usernames}}
+		<option value={{coordinates}}>{{username}}</option>
 		{{/each}}	
     </select>
     {{#each tuppers}}

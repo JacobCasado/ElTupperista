@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Tupper = require('../models/Tupper');
+const _ = require('lodash');
 
 
 // C(R)UD -> Muestra todos los tuppers
@@ -9,9 +10,14 @@ router.get('/', (req, res, next) => {
 	.populate('user')
 		.then(tuppers => {
 			console.log(tuppers)
+			let usernames = [];
+			tuppers.forEach(e => usernames.push({username: e.user.username, coordinates: e.user.location.coordinates}));
+			usernames = _.uniqBy(usernames, 'username');
+			console.log(usernames);
 			res.render('tupper/list', {
 				tuppers,
-				tupperStr: JSON.stringify(tuppers)
+				tupperStr: JSON.stringify(tuppers),
+				usernames
 			});
 		}).catch(e => next(e))
 });
