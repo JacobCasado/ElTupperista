@@ -26,9 +26,7 @@ router.post('/new', (req, res, next) => {
 
 	newTupper.save()
 		.then(() => {
-			res.render("profile", {
-				successMessage: "Tupper saved successfully"
-			});
+			res.redirect("/profile")
 		})
 		.catch(err => {
 			res.render("profile", {

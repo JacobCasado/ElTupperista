@@ -20,7 +20,7 @@
 	<input class="form-control" type="text" name="longitude" id="lng-pos" placeholder="Longitude *">
 
 	<button id="updateProfile" type="submit">Update Profile</button>
-	
+
 	<div id="profileMap" style="width: 320px; height: 480px;"></div>
 
 </form>
@@ -37,6 +37,16 @@
 	<button type="submit">Create Your Tupper</button>
 
 </form>
+
+<div >
+	<ul>
+		{{#each tuppers}}
+		<li>{{tuppername}}</li>
+		<li>{{price}}</li>
+		<li>{{quantity}}</li>
+		{{/each}}
+	</ul>
+</div>
 
 {{!-- Google Places and Google Map API --}}
 <script src="/javascripts/filInputPosition.js"></script>
