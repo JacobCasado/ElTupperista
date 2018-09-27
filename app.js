@@ -15,7 +15,7 @@ const flash = require("connect-flash");
 
 
 mongoose
-	.connect('mongodb://localhost/taperista', {
+	.connect(process.env.MONGODB_URI, {
 		useNewUrlParser: true
 	})
 	.then(x => {
