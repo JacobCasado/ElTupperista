@@ -43,13 +43,15 @@ router.get('/delete/:tupperId', (req, res, next) => {
 });
 
 // CR(U)D -> Update, muestra el formulario
-// router.get('/update/:tupperId', (req, res, next) => {
-// 	Tupper.findById(req.params.tupperId).then(tupper => {
-// 		res.render('tupper/edit', {
-// 			tupper
-// 		});
-// 	}).catch(e => next(e));
-// });
+router.get('/show/:tupperId', (req, res, next) => {
+	Tupper.findById(req.params.tupperId).then(tupper => {
+		console.log(tupper)
+		res.render('tupper/show', {
+			
+			tupper
+		});
+	}).catch(e => next(e));
+});
 
 // CR(U)D -> Update, muestra el formulario
 router.post('/update/:tupperId', (req, res, next) => {
