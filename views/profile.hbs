@@ -20,7 +20,7 @@
 	<input class="form-control" type="text" name="longitude" id="lng-pos" placeholder="Longitude *">
 
 	<button id="updateProfile" type="submit">Update Profile</button>
-	
+
 	<div id="profileMap" style="width: 320px; height: 480px;"></div>
 
 </form>
@@ -35,8 +35,43 @@
 	<input type="number" name="quantity" id="quantity">
 
 	<button type="submit">Create Your Tupper</button>
-
 </form>
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+	Launch demo modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<form action="/tupper/{{taaperID}}" method="POST" id="form-tupper">
+					<label for="tuppername">Your Recipe</label>
+					<input id="tuppername" type="text" name="tuppername" placeholder="Recipe Name">
+					<label for="price">Your Price</label>
+					<input type="number" name="price" id="price">
+					<label for="quantity">Tupper´s Quantity</label>
+					<input type="number" name="quantity" id="quantity">
+
+					<button type="submit">Edit Your Tupper</button>
+				</form>
+
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-primary">Save changes</button>
+			</div>
+		</div>
+	</div>
+</div>
 
 {{!-- Google Places and Google Map API --}}
 <script src="/javascripts/filInputPosition.js"></script>

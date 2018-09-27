@@ -54,22 +54,22 @@ router.get('/delete/:tupperId', (req, res, next) => {
 // });
 
 // CR(U)D -> Update, muestra el formulario
-// router.post('/update/:tupperId', (req, res, next) => {
+router.post('/update/:tupperId', (req, res, next) => {
 
-// 	let {
-// 		tuppername,
-// 		price,
-// 		quantity,
-// 		user
-// 	} = req.body;
-// 	Tupper.findByIdAndUpdate(req.params.tupperId, {
-// 			tuppername,
-// 			price,
-// 			quantity,
-// 			user
-// 		})
-// 		.then(() => res.redirect('/tupper'))
-// 		.catch(e => next(e));
-// });
+	let {
+		tuppername,
+		price,
+		quantity,
+		user
+	} = req.body;
+	Tupper.findByIdAndUpdate(req.params.tupperId, {
+			tuppername,
+			price,
+			quantity,
+			user
+		})
+		.then(() => res.redirect('/profile'))
+		.catch(e => next(e));
+});
 
 module.exports = router;
