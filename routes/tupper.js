@@ -26,9 +26,7 @@ router.post('/new', (req, res, next) => {
 
 	newTupper.save()
 		.then(() => {
-			res.render("profile", {
-				successMessage: "Tupper saved successfully"
-			});
+			res.redirect("/profile")
 		})
 		.catch(err => {
 			res.render("profile", {
@@ -56,17 +54,11 @@ router.get('/delete/:tupperId', (req, res, next) => {
 // CR(U)D -> Update, muestra el formulario
 router.post('/update/:tupperId', (req, res, next) => {
 
-	let {
-		tuppername,
-		price,
-		quantity,
-		user
-	} = req.body;
-	Tupper.findByIdAndUpdate(req.params.tupperId, {
+	let {tuppername,price,quantity} = req.body;
+		Tupper.findByIdAndUpdate(req.params.tupperId, {
 			tuppername,
 			price,
-			quantity,
-			user
+			quantity
 		})
 		.then(() => res.redirect('/profile'))
 		.catch(e => next(e));

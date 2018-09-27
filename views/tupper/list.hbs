@@ -17,20 +17,16 @@
     </select>
     {{#each tuppers}}
     <ul>
-      {{#if this.user.isCooker}}
+     
       <li>
         <p>{{this.user.username}}</p>
         <p>{{this.tuppername}}</p>
         <p>{{this.price}}</p>
-        <p><a href="">Delete</a></p>
+         {{#if this.user.isCooker}}
+        <p><a id="deleteTupper" href="/tupper/delete/{{this._id}}">Delete</a></p>
+         {{/if}}
       </li>
-      {{else}}
-      <li>
-        <p>{{this.user.username}}</p>
-        <p>{{this.tuppername}}</p>
-        <p>{{this.price}}</p>
-      </li>
-      {{/if}}
+      
     </ul>
      {{/each}}
 <script>

@@ -38,39 +38,45 @@
 </form>
 
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-	Launch demo modal
-</button>
+
 
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-	<div class="modal-dialog" role="document">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
-			</div>
-			<div class="modal-body">
-				<form action="/tupper/{{taaperID}}" method="POST" id="form-tupper">
-					<label for="tuppername">Your Recipe</label>
-					<input id="tuppername" type="text" name="tuppername" placeholder="Recipe Name">
-					<label for="price">Your Price</label>
-					<input type="number" name="price" id="price">
-					<label for="quantity">Tupper´s Quantity</label>
-					<input type="number" name="quantity" id="quantity">
 
-					<button type="submit">Edit Your Tupper</button>
-				</form>
+<ul>
+	{{#each tuppers}}
+	<li>{{tuppername}}</li>
+	<li>{{price}}</li>
+	<li>{{quantity}}</li>
+	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal{{id}}">
+		Edit your Tupper
+	</button>
+	
+	<div class="modal fade" id="exampleModal{{id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Edit your Tupper</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<form action="/tupper/update/{{_id}}" method="POST" id="form-tupper">
+						<label for="tuppername">Your Recipe</label>
+						<input id="tuppername" type="text" name="tuppername" value="{{tuppername}}">
+						<label for="price">Your Price</label>
+						<input type="number" name="price" id="price" value="{{price}}">
+						<label for="quantity">Tupper´s Quantity</label>
+						<input type="number" name="quantity" id="quantity" value="{{quantity}}">
 
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-				<button type="button" class="btn btn-primary">Save changes</button>
+						<button type="submit">Modify Tupper</button>
+					</form>
+				</div>
 			</div>
 		</div>
 	</div>
+	{{/each}}
+</ul>
 </div>
 
 {{!-- Google Places and Google Map API --}}
