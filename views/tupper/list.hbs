@@ -15,6 +15,20 @@
 		<option value={{this.user.location.coordinates}}>{{this.user.username}}</option>
 		{{/each}}	
     </select>
+    {{#each tuppers}}
+    <ul>
+     
+      <li>
+        <p>{{this.user.username}}</p>
+        <p>{{this.tuppername}}</p>
+        <p>{{this.price}}</p>
+         {{#if this.user.isCooker}}
+        <p><a id="deleteTupper" href="/tupper/delete/{{this._id}}">Delete</a></p>
+         {{/if}}
+      </li>
+      
+    </ul>
+     {{/each}}
 <script>
   window.tuppers = {{{ tupperStr }}}
 </script>

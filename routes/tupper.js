@@ -8,7 +8,7 @@ router.get('/', (req, res, next) => {
 	Tupper.find()
 	.populate('user')
 		.then(tuppers => {
-
+			console.log(tuppers)
 			res.render('tupper/list', {
 				tuppers,
 				tupperStr: JSON.stringify(tuppers)
@@ -16,12 +16,6 @@ router.get('/', (req, res, next) => {
 		}).catch(e => next(e))
 });
 
-
-
-// (C)RUD ->  Muestra el formulario de creación de un tupper
-// router.get('/new', (req, res, next) => {
-// 	res.render('tupper/create');
-// });
 
 // (C)RUD ->  Crea un tupper
 router.post('/new', (req, res, next) => {
@@ -32,9 +26,7 @@ router.post('/new', (req, res, next) => {
 
 	newTupper.save()
 		.then(() => {
-			res.render("profile", {
-				successMessage: "Tupper saved successfully"
-			});
+			res.redirect("/profile")
 		})
 		.catch(err => {
 			res.render("profile", {
@@ -44,38 +36,34 @@ router.post('/new', (req, res, next) => {
 });
 
 // CRU(D) -> Elimina un tupper
-// router.get('/delete/:tupperId', (req, res, next) => {
-// 	Tupper.findByIdAndRemove(req.params.tupperId).then(() => {
-// 		res.redirect('/tupper');
-// 	}).catch(e => next(e))
-// });
+router.get('/delete/:tupperId', (req, res, next) => {
+	Tupper.findByIdAndRemove(req.params.tupperId).then(() => {
+		res.redirect('/tupper');
+	}).catch(e => next(e))
+});
 
 // CR(U)D -> Update, muestra el formulario
-// router.get('/update/:tupperId', (req, res, next) => {
-// 	Tupper.findById(req.params.tupperId).then(tupper => {
-// 		res.render('tupper/edit', {
-// 			tupper
-// 		});
-// 	}).catch(e => next(e));
-// });
+router.get('/show/:tupperId', (req, res, next) => {
+	Tupper.findById(req.params.tupperId).then(tupper => {
+		console.log(tupper)
+		res.render('tupper/show', {
+			
+			tupper
+		});
+	}).catch(e => next(e));
+});
 
 // CR(U)D -> Update, muestra el formulario
-// router.post('/update/:tupperId', (req, res, next) => {
+router.post('/update/:tupperId', (req, res, next) => {
 
-// 	let {
-// 		tuppername,
-// 		price,
-// 		quantity,
-// 		user
-// 	} = req.body;
-// 	Tupper.findByIdAndUpdate(req.params.tupperId, {
-// 			tuppername,
-// 			price,
-// 			quantity,
-// 			user
-// 		})
-// 		.then(() => res.redirect('/tupper'))
-// 		.catch(e => next(e));
-// });
+	let {tuppername,price,quantity} = req.body;
+		Tupper.findByIdAndUpdate(req.params.tupperId, {
+			tuppername,
+			price,
+			quantity
+		})
+		.then(() => res.redirect('/profile'))
+		.catch(e => next(e));
+});
 
 module.exports = router;
