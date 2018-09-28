@@ -1,13 +1,5 @@
-document.addEventListener(
-  "DOMContentLoaded",
-  () => {
-    const drawMarkerAndCenter = (map, coords) => {
-      const myMarker = new google.maps.Marker({
-        position: coords,
-        map
-      });
-      map.setCenter(coords);
-    };
+document.addEventListener( "DOMContentLoaded", () => {
+
 
     let ironhackMAD = { lat: 40.3925321, lng: -3.7004556 };
     const map = new google.maps.Map(document.getElementById("map"), {
@@ -55,21 +47,18 @@ document.addEventListener(
 		.then(center => {
 			map.setCenter(center);
 		
-
 			tuppers.forEach(tupper => {
-
 				new google.maps.Marker({
-				position: {
-					lat: Number(tupper.user.location.coordinates[0]),
-					lng: Number(tupper.user.location.coordinates[1])
-				},
-				map: map,
-				title: tupper.user.username
+					position: {
+						lat: Number(tupper.user.location.coordinates[0]),
+						lng: Number(tupper.user.location.coordinates[1])
+					},
+					map: map,
+					title: tupper.user.username
 				});
 			});
 		})
-		.catch(err => 
-			console.log(err));
+		.catch(err => console.log(err));
   },
   false
 );
