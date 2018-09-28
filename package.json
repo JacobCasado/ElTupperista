@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "sass public/stylesheets/style.scss:public/stylesheets/style.css, node ./bin/www",
+    "start": "sass public/stylesheets/style.scss:public/stylesheets/style.css; node ./bin/www",
     "dev": "DEBUG=taperista:* nodemon ./bin/www",
     "dev-windows": "nodemon ./bin/www"
   },
