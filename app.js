@@ -81,6 +81,11 @@ app.use(session({
 app.use(flash());
 require('./passport')(app);
 
+app.use((req, res, next) => {
+	app.locals.user = req.user;
+	next();
+})
+
 // ROUTERS
 app.use('/', require('./routes/index'));
 app.use('/auth', require('./routes/auth'));

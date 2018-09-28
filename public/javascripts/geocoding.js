@@ -1,51 +1,38 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-	var geocoder;
-	var profileMap;
+	//var geocoder;
+	let profileMapTag = document.getElementById('profileMap');
+	//let autocomplete = $('#autocomplete');
 
 	initialize();
-	
-	$('#updateProfile').on('click', codeAddress);
+	autocompleteInput();
 
 	function initialize() {
-		//Ironhack Coordenates
-		let latitude = 40.3932613;
-		let longitude = -3.6991178;
+		//Ironhack Location
+		let lat = 40.3932613;
+		let lng = -3.6991178;
+		
+		let latlng = { lat: lat, lng: lng }
+		let mapOptions = { zoom: 10, center: latlng }
+		
+		let profileMap = new google.maps.Map(profileMapTag, mapOptions);
 
 		geolocalize()
-			.then(position => {
-				latitude = Number(position.lat);
-				longitude = Number(position.lng);
-				fillInputPosition(latitude, longitude);
+			.then( position => {
+				lat = Number(position.lat);
+				lng = Number(position.lng);
+				latlng = { lat: lat, lng: lng }
+				
+				setPosOnForm(latlng);
+				drawMarkerAndCenter(profileMap, latlng);
 			})
-			.catch(err => console.log(err));
+			.catch( err => {
+				latlng = { lat: lat, lng: lng };
 
-		geocoder = new google.maps.Geocoder();
-		var latlng = new google.maps.LatLng(latitude, longitude);
-		var mapOptions = {
-		zoom: 10,
-		center: latlng
-		}
-		profileMap = new google.maps.Map(document.getElementById('profileMap'), mapOptions);
-	}
-
-	function codeAddress() {
-		var address = document.getElementById('autocomplete').value;
-
-		geocoder.geocode( { 'address': address}, function(results, status) {
-
-			if (status == 'OK') {
-		
-			profileMap.setCenter(results[0].geometry.location);
-			var marker = new google.maps.Marker({
-				map: profileMap,
-				position: results[0].geometry.location
+				setPosOnForm(latlng);
+				drawMarkerAndCenter(profileMap, latlng);
 			});
-
-		} else {
-			alert('Geocode was not successful for the following reason: ' + status);
-		}
-		});
 	}
+
 }, false);
 

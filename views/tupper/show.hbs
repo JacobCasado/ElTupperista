@@ -1,0 +1,27 @@
+
+{{#if user}}
+<ul>
+  <li>
+    <h5>{{user.username}}</h5>
+    <h6>{{user.address}}</h6>
+  </li>
+</ul>
+{{/if}}
+
+
+{{#if tupper}}
+
+<ul>
+
+  <li>
+
+    <p>{{tupper.tuppername}}</p>
+    <p>{{tupper.price}}</p>
+    <p>{{tupper.quantity}}</p>
+  </li>
+
+</ul>
+<button type="submit" class="btn btn-primary">
+  <a href="/tupper">Go to Map</a>
+</button>
+{{/if}}

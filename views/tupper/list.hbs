@@ -1,36 +1,44 @@
+{{#if user}}
+ 	<h5>Hello <span>{{user.username}}</span></h5>
+	<p>You can see the list of tupper below.</p>
+{{/if}}
 <div id="map"></div>
 
 <div id="floating-panel">
 
-    <b>Start: </b>
-    <select id="start">
-      
-      <option value="40.3932613, -3.6991178">IronHack</option>
-      
-    </select>
-    <b>End: </b>
+  <b>Start: </b>
+  <select id="start">
 
-    <select id="end">
-		{{#each tuppers}}
-		<option value={{this.user.location.coordinates}}>{{this.user.username}}</option>
-		{{/each}}	
-    </select>
-    {{#each tuppers}}
-    <ul>
-     
-      <li>
-        <p>{{this.user.username}}</p>
-        <p>{{this.tuppername}}</p>
-        <p>{{this.price}}</p>
-         {{#if this.user.isCooker}}
-        <p><a id="deleteTupper" href="/tupper/delete/{{this._id}}">Delete</a></p>
-         {{/if}}
-      </li>
-      
-    </ul>
-     {{/each}}
-<script>
-  window.tuppers = {{{ tupperStr }}}
-</script>
+    <option value="40.3932613, -3.6991178">IronHack</option>
 
-<script src="/javascripts/listMap.js"></script>
+
+  </select>
+  <b>End: </b>
+
+  <select id="end">
+    {{#each usernames}}
+    <option value={{coordinates}}>{{username}}</option>
+    {{/each}}
+  </select>
+  {{#each tuppers}}
+  <ul>
+
+    <li>
+      <p>{{this.user.username}}</p>
+      <p>{{this.tuppername}}</p>
+      <p>{{this.price}}</p>
+      <button type="submit" class="btn btn-primary">
+        <a href="/tupper/show/{{id}}">Choose your Tupper</a>
+      </button>
+      {{#if this.user.isCooker}}
+      <p><a id="deleteTupper" href="/tupper/delete/{{this._id}}">Delete</a></p>
+      {{/if}}
+    </li>
+
+  </ul>
+  {{/each}}
+  <script>
+    window.tuppers = {{{ tupperStr }}}
+  </script>
+
+  <script src="/javascripts/listMap.js"></script>

@@ -11,5 +11,15 @@
 	width: 335px;
 	height: 500px;
 	border-radius: 20px;
-	border:1px solid rgb(241, 156, 57);
+	border:1px solid $medium-orange;
+}
+
+.orange{
+	background-color: $medium-orange;
+	color: whitesmoke;
+	text-decoration: none;
+}
+
+.form-tupper {
+	display: none;
 }
