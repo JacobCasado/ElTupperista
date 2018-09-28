@@ -1,24 +1,26 @@
-<h2>Login</h2>
+<div class="container-main">
+	<h2>Login</h2>
 
-<form action="/auth/login" method="POST" id="form-login">
-	<div class="form-group">
-		<label for="username">Username</label>
-		<input type="text" class="form-control" id="username" name="username" placeholder="JonSnow">
-	</div>
-	<div class="form-group">
-		<label for="password">Password</label>
-		<input type="password" class="form-control" id="password" name="password" placeholder="Your password">
-	</div>
+	<form action="/auth/login" method="POST" id="form-login">
+		<div class="form-group">
+			<label for="username">Username</label>
+			<input type="text" class="form-control" id="username" name="username" placeholder="JonSnow">
+		</div>
+		<div class="form-group">
+			<label for="password">Password</label>
+			<input type="password" class="form-control" id="password" name="password" placeholder="Your password">
+		</div>
 
-	{{#if errorMessage }}
-		<div class="error-message">{{ errorMessage }}</div>
-	{{/if}}
+		{{#if errorMessage }}
+			<div class="error-message">{{ errorMessage }}</div>
+		{{/if}}
 
 
-	<button type="submit" class="btn btn-link btn-lg btn-block orange">Login</button>
+		<button type="submit" class="btn btn-link btn-lg btn-block orange">Login</button>
 
-	<p class="account-message">
-		Don't have an account yet?
-		<a href="/auth/signup">Signup</a>
-	</p>
-</form>
+		<p class="account-message">
+			Don't have an account yet?
+			<a href="/auth/signup">Signup</a>
+		</p>
+	</form>
+</div>
