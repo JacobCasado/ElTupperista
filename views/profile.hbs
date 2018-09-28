@@ -4,11 +4,9 @@
 
 <form action="/profile" method="POST" id="form-profile">
 	<label for="address">Address</label>
-	{{#if user.address}}
-		{{user.address}}
-	{{else}}
+
 	<input type="text" name="address" id="autocomplete" placeholder="Your address" required>
-	{{/if}}
+	
 	<legend for="isCooker">Do you wanna be a cooker?</legend>
 	<label for="isCookerFalse">No</label>
 	<input type="radio" id="isCookerFalse" name="isCooker" value="false" checked>
