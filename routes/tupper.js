@@ -1,11 +1,12 @@
 const express = require('express');
+const { ensureLoggedIn} = require("connect-ensure-login");
 const router = express.Router();
 const Tupper = require('../models/Tupper');
 const _ = require('lodash');
 
 
 // C(R)UD -> Muestra todos los tuppers
-router.get('/', (req, res, next) => {
+router.get('/', ensureLoggedIn(), (req, res, next) => {
 	Tupper.find()
 	.populate('user')
 		.then(tuppers => {
@@ -17,14 +18,15 @@ router.get('/', (req, res, next) => {
 			res.render('tupper/list', {
 				tuppers,
 				tupperStr: JSON.stringify(tuppers),
-				usernames
+				usernames,
+				user: req.user
 			});
 		}).catch(e => next(e))
 });
 
 
 // (C)RUD ->  Crea un tupper
-router.post('/new', (req, res, next) => {
+router.post('/new', ensureLoggedIn(), (req, res, next) => {
 	let { tuppername, price, quantity }  = req.body;
 	let user = req.user._id;
 
@@ -42,14 +44,14 @@ router.post('/new', (req, res, next) => {
 });
 
 // CRU(D) -> Elimina un tupper
-router.get('/delete/:tupperId', (req, res, next) => {
+router.get('/delete/:tupperId', ensureLoggedIn(), (req, res, next) => {
 	Tupper.findByIdAndRemove(req.params.tupperId).then(() => {
 		res.redirect('/tupper');
 	}).catch(e => next(e))
 });
 
 // CR(U)D -> Update, muestra el formulario
-router.get('/show/:tupperId', (req, res, next) => {
+router.get('/show/:tupperId', ensureLoggedIn(), (req, res, next) => {
 	Tupper.findById(req.params.tupperId).then(tupper => {
 		console.log(tupper)
 		res.render('tupper/show', {
@@ -60,7 +62,7 @@ router.get('/show/:tupperId', (req, res, next) => {
 });
 
 // CR(U)D -> Update, muestra el formulario
-router.post('/update/:tupperId', (req, res, next) => {
+router.post('/update/:tupperId', ensureLoggedIn(), (req, res, next) => {
 
 	let {tuppername,price,quantity} = req.body;
 		Tupper.findByIdAndUpdate(req.params.tupperId, {
