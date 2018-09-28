@@ -5,10 +5,11 @@
 <form action="/profile" method="POST" id="form-profile">
 	<label for="address">Address</label>
 	<input type="text" name="address" id="autocomplete" placeholder="Your address" required>
-	<label for="isCooker">Do you wanna be a cooker?</label>
-
-	<input type="radio" name="isCooker" value="false" checked> No<br>
-	<input type="radio" name="isCooker" value="true"> Yes<br>
+	<legend for="isCooker">Do you wanna be a cooker?</legend>
+	<label for="isCookerFalse">No</label>
+	<input type="radio" id="isCookerFalse" name="isCooker" value="false" checked>
+	<label for="isCookerTrue">Yes</label>
+	<input type="radio" id="isCookerTrue" name="isCooker" value="true">
 
 	{{#if errorMessage }}
 	<div class="error-message">{{ errorMessage }}</div>
@@ -26,7 +27,7 @@
 </form>
 
 {{!-- FORMULARIO TUPPER --}}
-<form action="/tupper/new" method="POST" id="form-tupper">
+<form class="form-tupper" action="/tupper/new" method="POST" id="form-tupper">
 	<label for="tuppername">Your Recipe</label>
 	<input id="tuppername" type="text" name="tuppername" placeholder="Recipe Name">
 	<label for="price">Your Price</label>
@@ -66,7 +67,7 @@
 					</button>
 				</div>
 				<div class="modal-body">
-					<form action="/tupper/update/{{_id}}" method="POST" id="form-tupper">
+					<form action="/tupper/update/{{_id}}" method="POST">
 						<label for="tuppername">Your Recipe</label>
 						<input id="tuppername" type="text" name="tuppername" value="{{tuppername}}">
 						<label for="price">Your Price</label>
