@@ -4,7 +4,11 @@
 
 <form action="/profile" method="POST" id="form-profile">
 	<label for="address">Address</label>
+	{{#if user.address}}
+		{{user.address}}
+	{{else}}
 	<input type="text" name="address" id="autocomplete" placeholder="Your address" required>
+	{{/if}}
 	<legend for="isCooker">Do you wanna be a cooker?</legend>
 	<label for="isCookerFalse">No</label>
 	<input type="radio" id="isCookerFalse" name="isCooker" value="false" checked>
@@ -22,21 +26,21 @@
 
 	<button id="updateProfile" type="submit">Save</button>
 
-	<div id="profileMap" style="width: 320px; height: 480px;"></div>
+	
 
 </form>
+	{{!-- FORMULARIO TUPPER --}}
+	<form class="form-tupper" action="/tupper/new" method="POST" id="form-tupper">
+		<label for="tuppername">Your Recipe</label>
+		<input id="tuppername" type="text" name="tuppername" placeholder="Recipe Name">
+		<label for="price">Your Price</label>
+		<input type="number" name="price" id="price">
+		<label for="quantity">Tupper´s Quantity</label>
+		<input type="number" name="quantity" id="quantity">
 
-{{!-- FORMULARIO TUPPER --}}
-<form class="form-tupper" action="/tupper/new" method="POST" id="form-tupper">
-	<label for="tuppername">Your Recipe</label>
-	<input id="tuppername" type="text" name="tuppername" placeholder="Recipe Name">
-	<label for="price">Your Price</label>
-	<input type="number" name="price" id="price">
-	<label for="quantity">Tupper´s Quantity</label>
-	<input type="number" name="quantity" id="quantity">
-
-	<button type="submit">Create Your Tupper</button>
-</form>
+		<button type="submit">Create Your Tupper</button>
+	</form>
+<div id="profileMap" style="width: 320px; height: 480px;"></div>
 
 <div>
 	<a href="/tupper">Show tuppers</a>
