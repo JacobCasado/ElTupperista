@@ -10,11 +10,9 @@ router.get('/', ensureLoggedIn(), (req, res, next) => {
 	Tupper.find()
 	.populate('user')
 		.then(tuppers => {
-			console.log(tuppers)
 			let usernames = [];
 			tuppers.forEach(e => usernames.push({username: e.user.username, coordinates: e.user.location.coordinates}));
 			usernames = _.uniqBy(usernames, 'username');
-			console.log(usernames);
 			res.render('tupper/list', {
 				tuppers,
 				tupperStr: JSON.stringify(tuppers),
@@ -53,9 +51,7 @@ router.get('/delete/:tupperId', ensureLoggedIn(), (req, res, next) => {
 // CR(U)D -> Update, muestra el formulario
 router.get('/show/:tupperId', ensureLoggedIn(), (req, res, next) => {
 	Tupper.findById(req.params.tupperId).then(tupper => {
-		console.log(tupper)
 		res.render('tupper/show', {
-			
 			tupper
 		});
 	}).catch(e => next(e));
