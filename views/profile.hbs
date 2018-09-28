@@ -16,10 +16,10 @@
 	<div class="success-message">{{ successMessage }}</div>
 	{{/if}}
 
-	<input class="form-control" type="text" name="latitude" id="lat-pos" placeholder="Latitude *">
-	<input class="form-control" type="text" name="longitude" id="lng-pos" placeholder="Longitude *">
+	<input class="form-control" type="hidden" name="latitude" id="lat-pos" placeholder="Latitude *">
+	<input class="form-control" type="hidden" name="longitude" id="lng-pos" placeholder="Longitude *">
 
-	<button id="updateProfile" type="submit">Update Profile</button>
+	<button id="updateProfile" type="submit">Save</button>
 
 	<div id="profileMap" style="width: 320px; height: 480px;"></div>
 
@@ -37,7 +37,9 @@
 	<button type="submit">Create Your Tupper</button>
 </form>
 
-<!-- Button trigger modal -->
+<div>
+	<a href="/tupper">Show tuppers</a>
+</div>
 
 
 <!-- Modal -->
@@ -83,6 +85,7 @@
 </div>
 
 {{!-- Google Places and Google Map API --}}
+<script src="/javascripts/showTupperForm.js"></script>
 <script src="/javascripts/setPosOnForm.js"></script>
 <script src="/javascripts/codeAddress.js"></script>
 <script src="/javascripts/autocomplete.js"></script>
