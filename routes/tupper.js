@@ -10,17 +10,9 @@ router.get('/', ensureLoggedIn(), (req, res, next) => {
 	Tupper.find()
 	.populate('user')
 		.then(tuppers => {
-<<<<<<< HEAD
 			let usernames = [];
 			tuppers.forEach(e => usernames.push({username: e.user.username, coordinates: e.user.location.coordinates}));
 			usernames = _.uniqBy(usernames, 'username');
-=======
-			// console.log(tuppers)
-			let usernames = [];
-			tuppers.forEach(e => usernames.push({username: e.user.username, coordinates: e.user.location.coordinates}));
-			usernames = _.uniqBy(usernames, 'username');
-			// console.log(usernames);
->>>>>>> Jacob
 			res.render('tupper/list', {
 				tuppers,
 				tupperStr: JSON.stringify(tuppers),
