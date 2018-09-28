@@ -23,3 +23,55 @@
 .form-tupper {
 	display: none;
 }
+.container-fluid{
+	padding-right: 0;
+    padding-left: 0;
+}
+.container-home-wrap {
+	overflow:hidden;
+	width: 100vw;
+	height: 100vh;
+	background: url('/images/bghome.jpg');
+}
+
+.container-main {
+	width: 90%;
+	margin: 3rem auto;
+}
+
+.brand {
+	font-family: $brand-font-family;
+	color: $medium-orange;
+}
+.title-brand {
+	font-family: $brand-font-family;
+	color: $medium-orange;
+	font-size: 3.5rem;
+	text-shadow: 1px 1px 2px rgba(150, 150, 150, 1);
+}
+.subtitle-brand {
+	font-family: $brand-font-family;
+	color: $medium-orange;
+}
+
+.username {
+	text-transform: capitalize;
+}
+
+.form-profile {
+	margin-top: 2rem;
+	legend {
+		font-size: 1.25rem;
+	}
+}
+
+.btn-brand {
+	background-color: $medium-orange;
+	color: #fff;
+	width: 200px;
+}
+
+.map {
+	margin-top: 2rem;
+	margin-bottom: 2rem;
+}
