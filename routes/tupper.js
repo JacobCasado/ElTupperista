@@ -43,9 +43,17 @@ router.post('/new', ensureLoggedIn(), (req, res, next) => {
 
 // CRU(D) -> Elimina un tupper
 router.get('/delete/:tupperId', ensureLoggedIn(), (req, res, next) => {
-	Tupper.findByIdAndRemove(req.params.tupperId).then(() => {
-		res.redirect('/tupper');
-	}).catch(e => next(e))
+	Tupper.findById(req.params.tupperId)
+	.then(tupper => {
+		if(req.user._id.toString() == tupper.user.toString()){
+			tupper.remove();
+		}
+		res.redirect("/tupper");
+	})
+	.catch(err => next(err));
+	// Tupper.findByIdAndRemove(req.params.tupperId).then(() => {
+	// 	res.redirect('/tupper');
+	// }).catch(e => next(e))
 });
 
 // CR(U)D -> Update, muestra el formulario

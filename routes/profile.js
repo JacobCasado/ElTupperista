@@ -34,6 +34,7 @@ router.post("/", ensureLoggedIn(), (req, res) => {
     });
     return;
   }
+  console.log(isCooker);
 
   User.findByIdAndUpdate(id, { address, location, isCooker })
     .then(() => {
