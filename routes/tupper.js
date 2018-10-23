@@ -11,7 +11,7 @@ router.get('/', ensureLoggedIn(), (req, res, next) => {
 	.populate('user')
 		.then(tuppers => {
 			let usernames = [];
-			tuppers.forEach(e => usernames.push({username: e.user.username, coordinates: e.user.location.coordinates}));
+				tuppers.forEach(e => {if(e.user !== null) usernames.push({username: e.user.username, coordinates: e.user.location.coordinates})});
 			usernames = _.uniqBy(usernames, 'username');
 			res.render('tupper/list', {
 				tuppers,
