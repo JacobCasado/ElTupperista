@@ -1,8 +1,6 @@
 <div class="container-main">
-	<div class="row">
-		<div class="col-md-4">
-		
-		<h2 class="subtitle-brand">Profile</h2>
+
+	
 		<h4 class="subtitle-brand">Hello <span class="username">{{user.username}}</span></h4>
 
 
@@ -51,7 +49,7 @@
 			<button type="submit">Create Your Tupper</button>
 		</form>
 
-		<div class="map" id="profileMap" style="width: 320px; height: 480px;"></div>
+		<div class="map" id="profileMap"></div>
 
 		<div>
 			<a href="/tupper">Show tuppers</a>
@@ -59,14 +57,14 @@
 
 		<ul>
 			{{#each tuppers}}
-			<li>{{tuppername}}</li>
-			<li>{{price}}</li>
-			<li>{{quantity}}</li>
-			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal{{id}}">
+			<li>Tupper´s name: {{tuppername}}</li>
+			<li>Price: {{price}}€</li>
+			<li>Quantity: {{quantity}}</li>
+			<button type="button" class="btn btn-link orange orange-link" data-toggle="modal" data-target="#exampleModal{{id}}">
 				Edit your Tupper
 			</button>
-			<button type="submit" class="btn btn-primary">
-				<a href="/tupper/show/{{id}}">Choose your Tupper</a>
+			<button type="submit" class="btn btn-warning">
+				<a class="button-delete" href="/tupper/show/{{id}}">Choose your Tupper</a>
 			</button>
 
 			<div class="modal fade" id="exampleModal{{id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -97,7 +95,7 @@
 			{{/each}}
 		</ul>
 	</div>
-</div>
+
 </div>
 </div>
 

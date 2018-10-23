@@ -1,9 +1,9 @@
-
+<div class="container-main">
 {{#if user}}
 <ul>
   <li>
-    <h5>{{user.username}}</h5>
-    <h6>{{user.address}}</h6>
+    <h5>Username: {{user.username}}</h5>
+    <h6>Address: {{user.address}}</h6>
   </li>
 </ul>
 {{/if}}
@@ -14,14 +14,14 @@
 <ul>
 
   <li>
-
-    <p>{{tupper.tuppername}}</p>
-    <p>{{tupper.price}}</p>
-    <p>{{tupper.quantity}}</p>
+    <p>Tupper´s name: {{tupper.tuppername}}</p>
+    <p>Price: {{tupper.price}}€</p>
+    <p>Quantity: {{tupper.quantity}} tuppers</p>
   </li>
 
 </ul>
-<button type="submit" class="btn btn-primary">
-  <a href="/tupper">Go to Map</a>
+<button type="submit" class="btn btn-link orange orange-link">
+  <a class="orange-link" href="/tupper">Go to Map</a>
 </button>
 {{/if}}
+</div>

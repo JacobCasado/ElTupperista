@@ -1,3 +1,5 @@
+<div class="container-main">
+
 {{#if user}}
  	<h5>Hello <span>{{user.username}}</span></h5>
 	<p>You can see the list of tupper below.</p>
@@ -27,11 +29,11 @@
       <p>{{this.user.username}}</p>
       <p>{{this.tuppername}}</p>
       <p>{{this.price}}</p>
-      <button type="submit" class="btn btn-primary">
-        <a href="/tupper/show/{{id}}">Choose your Tupper</a>
+      <button type="submit" class="btn btn-link orange">
+        <a class="orange-link" href="/tupper/show/{{id}}">Choose your Tupper</a>
       </button>
       {{#if this.user.isCooker}}
-      <p><a id="deleteTupper" href="/tupper/delete/{{this._id}}">Delete</a></p>
+      <button type="button" class="btn btn-warning"><a class="button-delete" id="deleteTupper" href="/tupper/delete/{{this._id}}">Delete</a></button>
       {{/if}}
     </li>
 
@@ -42,3 +44,5 @@
   </script>
 
   <script src="/javascripts/listMap.js"></script>
+
+  </div>

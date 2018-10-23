@@ -8,7 +8,15 @@
 
 #map {
 	margin-top:5px;
-	width: 335px;
+	width: 100%;
+	height: 500px;
+	border-radius: 20px;
+	border:1px solid $medium-orange;
+}
+
+#profileMap {
+	margin-top:5px;
+	width: 100%;
 	height: 500px;
 	border-radius: 20px;
 	border:1px solid $medium-orange;
@@ -17,6 +25,30 @@
 .orange{
 	background-color: $medium-orange;
 	color: whitesmoke;
+	text-decoration: none;
+}
+
+.orange:hover {
+	background-color: $strong-orange;
+	text-decoration: none;
+}
+.orange-link {
+	color: whitesmoke;
+	text-decoration: none;
+}
+
+.orange-link:hover {
+	color: whitesmoke;
+	text-decoration: none;
+}
+
+.button-delete {
+	color: $medium-orange;
+	text-decoration: none;
+}
+
+.button-delete:hover {
+	color: $medium-orange;
 	text-decoration: none;
 }
 
